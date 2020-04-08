@@ -26,24 +26,9 @@ title.addEventListener('mouseleave', () => title.style.color = 'green') // 7
 window.addEventListener('resize', () => body.style.border = "solid 3px blue"); // 8
 
 window.addEventListener("load", () => { // 3
-  heroImage.style.opacity = '0';
-  let opacity = 0;
-  let framerate = 60;
-
-  const interval = setInterval(() => {
-    shouldExitInterval();
-
-    opacity += 0.1;
-
-    return heroImage.style.opacity = opacity;
-  }, framerate);
-
-  function shouldExitInterval() {
-    if (opacity >= 1) {
-      return clearInterval(interval);
-    }
-  }
+  return gsap.from(heroImage, {opacity: 0, duration: 1, y: 50})
 });
+
 window.addEventListener("load", () => {
   const navLinks = document.querySelectorAll(".nav .nav-link"); 
   return navLinks.forEach(link => link.addEventListener('click', e => e.preventDefault()));
@@ -65,5 +50,6 @@ body.addEventListener('dblclick', () => body.style.color = "navy"); // 6
 
 image.addEventListener('dblclick', e => {
   e.stopPropagation();
-  image.style.opacity = '0'
+  image.style.opacity = '0';
+  gsap.from(image, {opacity: 1, duration: .5});
 }); // 6
